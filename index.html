@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* 🔹 Optimisation mobile bouton */
     #envoyerCommande {
       width: 100%;
       padding: 16px;
@@ -43,24 +42,24 @@
 
 <body>
 
-  <!-- Logo -->
   <div class="logo-container">
     <img src="images/logo.jpg" alt="Logo Actif Service" class="logo">
   </div>
 
   <h1>Commande de produits</h1>
 
-  <!-- FORMULAIRE COMPLET -->
   <form id="formCommande">
 
     <div class="form-group">
       <label for="societe">Nom de la société :</label>
-      <input type="text" id="societe" name="societe" placeholder="Votre société" required>
+      <input type="text" id="societe" name="societe" value="Clean" readonly>
     </div>
 
     <div class="form-group">
       <label for="chantier">Chantier :</label>
-      <input type="text" id="chantier" name="chantier" placeholder="Nom du chantier" required>
+      <select id="chantier" name="chantier" required>
+        <option value="">-- Sélectionner un chantier --</option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -68,11 +67,7 @@
       <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
     </div>
 
-    <!-- Produits générés par app.js -->
     <div id="produits"></div>
-
-    <!-- Champ caché -->
-    <input type="hidden" name="commande" id="commandeHidden">
 
     <button type="submit" id="envoyerCommande">
       Envoyer la commande
@@ -80,7 +75,6 @@
 
   </form>
 
-  <!-- EMAILJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -88,9 +82,7 @@
     });
   </script>
 
-  <!-- APP -->
   <script src="app.js" defer></script>
 
 </body>
-
 </html>
