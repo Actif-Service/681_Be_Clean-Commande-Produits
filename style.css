@@ -1,0 +1,222 @@
+/* ------------------- BASE ------------------- */ 
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #222;
+  text-align: center;
+  margin: 0;
+}
+
+/* LOGO */
+.logo-container { margin-bottom: 20px; }
+.logo { max-width: 200px; height: auto; }
+
+/* TITRE */
+h1 { color: #4CAF50; margin-bottom: 25px; }
+
+/* FORMULAIRE */
+.form-group { 
+  margin-bottom: 15px; 
+  text-align: left; 
+  display: inline-block; 
+  width: 100%;
+  max-width: 400px;
+}
+
+label { 
+  font-weight: bold; 
+  display: block; 
+  margin-bottom: 5px; 
+}
+
+input[type="text"], textarea { 
+  padding: 8px; 
+  width: 100%; 
+  border-radius: 6px; 
+  border: 1px solid #ccc; 
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* ------------------- ZONE "AUTRE" ------------------- */
+textarea#autre {
+  resize: vertical;
+  min-height: 80px;
+  margin-top: 10px;
+}
+
+/* PRODUITS */
+#produits { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px; 
+  margin-top: 30px; 
+}
+
+.produit {
+  background-color: #fff;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 15px;
+  width: 160px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.produit:hover { transform: scale(1.03); }
+
+/* IMAGE */
+.img-container {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* NOM PRODUIT */
+.produit span { 
+  font-weight: bold; 
+  margin-bottom: 10px; 
+  font-size: 14px; 
+  text-align: center;
+}
+
+/* QUANTITE */
+.quantite-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.quantite-container input.quantite {
+  width: 45px;
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.quantite-container button {
+  width: 25px;
+  height: 25px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quantite-container button:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+/* BOUTON ENVOI */
+button#envoyerCommande {
+  margin-top: 40px;
+  padding: 12px 30px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+button#envoyerCommande:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+@media (max-width: 768px) {
+  .produit { width: 45%; }
+}
+
+@media (max-width: 480px) {
+  #produits { flex-direction: column; gap: 15px; }
+  .produit { width: 90%; }
+  button#envoyerCommande { width: 90%; font-size: 18px; }
+}
+
+/* ------------------- STYLES POUR LES TABLEAUX DANS LES EMAILS ------------------- */
+
+/* Style global du tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* En-têtes */
+th {
+  background-color: #1976d2; /* bleu plus proche de l'image */
+  color: white;
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Cellules */
+td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  max-width: 200px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* Alternance des lignes */
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #bbdefb; /* bleu clair doux */
+}
+
+/* CONTENEUR POUR SOCIETE / DATE */
+.date-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+/* Date alignée à droite */
+.date-right {
+  margin-left: auto;
+  text-align: right;
+}
