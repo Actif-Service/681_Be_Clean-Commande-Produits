@@ -21,7 +21,7 @@ const chantiersBEClean=[
 ];
 
 const produits=[
-{ nom: "Ajax citron", image: "https://actif-service.github.io/Commande-Produits/images/Ajax%20citron.jpg" },
+  { nom: "Ajax citron", image: "https://actif-service.github.io/Commande-Produits/images/Ajax%20citron.jpg" },
   { nom: "Glass 2000 1 litre", image: "https://actif-service.github.io/Commande-Produits/images/Glass%202000%201%20litre.jpg" },
   { nom: "Sani-day 1 litre", image: "https://actif-service.github.io/Commande-Produits/images/Sani-day%201%20litre.jpg" },
   { nom: "Detarsan 1 litre", image: "https://actif-service.github.io/Commande-Produits/images/Detarsan_1litre.jpg" },
