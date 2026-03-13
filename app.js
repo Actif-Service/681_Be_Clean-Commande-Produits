@@ -1,20 +1,17 @@
+// 🔹 Initialisation EmailJS
+(function(){
+  emailjs.init("UIMYUuF1YijZh1DFI"); // ⚠️ Remplace par ton vrai USER ID EmailJS
+})();
+
 // 🔹 Protection anti-injection HTML
 function escapeHTML(str) {
   if (!str) return "";
   return str.replace(/[&<>"']/g, function(m) {
-    return ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    })[m];
+    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
   });
 }
 
-// 🔹 ==========================
 // 🔹 CHANTIERS BE CLEAN
-// 🔹 ==========================
 const chantiersBEClean = [
   { nom: "AKROPOLIS", adresse: "Luitberg, 25 1853 Strombeek-Bever" },
   { nom: "APOLLO 95-97", adresse: "Grotexinkellaan, 95-97 1853 Strombeek-Bever" },
@@ -26,18 +23,7 @@ const chantiersBEClean = [
   { nom: "BWT", adresse: "Leuvensesteenweg, 633 1930 Zaventem" }
 ];
 
-const chantierSelect = document.getElementById("chantier");
-
-chantiersBEClean.forEach(c => {
-  const option = document.createElement("option");
-  option.value = c.adresse;
-  option.textContent = c.nom;
-  chantierSelect.appendChild(option);
-});
-
-// 🔹 ==========================
-// 🔹 PRODUITS COMPLETS
-// 🔹 ==========================
+// 🔹 PRODUITS
 const produits = [
   { nom: "Ajax citron", image: "https://actif-service.github.io/Commande-Produits/images/Ajax%20citron.jpg" },
   { nom: "Glass 2000 1 litre", image: "https://actif-service.github.io/Commande-Produits/images/Glass%202000%201%20litre.jpg" },
@@ -69,105 +55,93 @@ const produits = [
   { nom: "Sac aspirateur Vento 8", image: "https://actif-service.github.io/Commande-Produits/images/sac%20aspirateur%20Vento%208.jpg" }
 ];
 
-const produitsContainer = document.getElementById("produits");
+document.addEventListener("DOMContentLoaded", () => {
+  const chantierSelect = document.getElementById("chantier");
+  const produitsContainer = document.getElementById("produits");
 
-// 🔹 Affichage produits
-produits.forEach(p => {
-  const div = document.createElement("div");
-  div.className = "produit";
-
-  div.innerHTML = `
-    <div class="img-container">
-      <img src="${p.image}" alt="${p.nom}">
-    </div>
-    <span>${p.nom}</span>
-    <div class="quantite-container">
-      <button type="button" class="moins">-</button>
-      <input type="number" min="0" value="0" class="quantite" data-nom="${p.nom}">
-      <button type="button" class="plus">+</button>
-    </div>
-  `;
-
-  produitsContainer.appendChild(div);
-
-  const input = div.querySelector(".quantite");
-
-  div.querySelector(".plus").addEventListener("click", () => {
-    input.value = (parseInt(input.value) || 0) + 1;
+  // Remplissage chantiers
+  chantiersBEClean.forEach(c => {
+    const option = document.createElement("option");
+    option.value = c.adresse;
+    option.textContent = c.nom;
+    chantierSelect.appendChild(option);
   });
 
-  div.querySelector(".moins").addEventListener("click", () => {
-    input.value = Math.max(0, (parseInt(input.value) || 0) - 1);
-  });
-});
+  // Affichage produits
+  produits.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "produit";
+    div.innerHTML = `
+      <div class="img-container"><img src="${p.image}" alt="Produit ${p.nom}"></div>
+      <span>${p.nom}</span>
+      <div class="quantite-container">
+        <button type="button" class="moins">-</button>
+        <input type="number" min="0" value="0" class="quantite" data-nom="${p.nom}">
+        <button type="button" class="plus">+</button>
+      </div>
+    `;
+    produitsContainer.appendChild(div);
 
-// 🔹 Zone "Autre demande"
-const autreDiv = document.createElement("div");
-autreDiv.className = "form-group";
-autreDiv.innerHTML = `
-  <label for="autre">Besoin d'autre chose :</label>
-  <textarea id="autre" placeholder="Ajoutez un produit ou commentaire"></textarea>
-`;
-produitsContainer.appendChild(autreDiv);
-
-// 🔹 ENVOI EMAIL
-document.getElementById("formCommande").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const societe = "BE Clean";
-  const chantier = escapeHTML(document.getElementById("chantier").value.trim());
-  const nom = escapeHTML(document.getElementById("nom").value.trim());
-  const autre = escapeHTML(document.getElementById("autre").value.trim());
-
-  if (!chantier || !nom) {
-    return alert("Veuillez sélectionner un chantier et entrer votre nom.");
-  }
-
-  let hasCommande = false;
-  document.querySelectorAll(".quantite").forEach(input => {
-    if (Number(input.value) > 0) hasCommande = true;
+    const input = div.querySelector(".quantite");
+    div.querySelector(".plus").addEventListener("click", () => input.value = (parseInt(input.value)||0)+1);
+    div.querySelector(".moins").addEventListener("click", () => input.value = Math.max(0,(parseInt(input.value)||0)-1));
   });
 
-  if (!hasCommande && !autre) {
-    return alert("Veuillez sélectionner au moins un produit ou ajouter une demande.");
-  }
+  // ENVOI FORMULAIRE
+  document.getElementById("formCommande").addEventListener("submit", function(e){
+    e.preventDefault();
 
-  const now = new Date();
-  const dateStr = now.toLocaleString("fr-FR");
+    const societe = "BE Clean";
+    const chantier = escapeHTML(document.getElementById("chantier").value.trim());
+    const nom = escapeHTML(document.getElementById("nom").value.trim());
+    const autre = escapeHTML(document.getElementById("autre").value.trim());
 
-  let texteCommande = `
-  <div style="font-family:Arial,sans-serif;">
-    <h2>Nouvelle commande produits – BE Clean</h2>
-    <p><strong>Société :</strong> ${societe}</p>
-    <p><strong>Adresse chantier :</strong> ${chantier}</p>
-    <p><strong>Nom :</strong> ${nom}</p>
-    <p><strong>Date :</strong> ${dateStr}</p>
-    <ul>
-  `;
-
-  document.querySelectorAll(".quantite").forEach(input => {
-    if (Number(input.value) > 0) {
-      texteCommande += `<li>${escapeHTML(input.dataset.nom)} : ${input.value}</li>`;
+    if(!chantier || !nom){
+      return alert("Veuillez sélectionner un chantier et entrer votre nom.");
     }
+
+    let hasCommande = false;
+    document.querySelectorAll(".quantite").forEach(input => { if(Number(input.value)>0) hasCommande=true; });
+
+    if(!hasCommande && !autre){
+      return alert("Veuillez sélectionner au moins un produit ou ajouter une demande.");
+    }
+
+    const now = new Date();
+    const dateStr = now.toLocaleString("fr-FR");
+
+    let texteCommande = `
+      <div style="font-family:Arial,sans-serif;">
+        <h2>Nouvelle commande produits – BE Clean</h2>
+        <p><strong>Société :</strong> ${societe}</p>
+        <p><strong>Adresse chantier :</strong> ${chantier}</p>
+        <p><strong>Nom :</strong> ${nom}</p>
+        <p><strong>Date :</strong> ${dateStr}</p>
+        <ul>
+    `;
+
+    document.querySelectorAll(".quantite").forEach(input => {
+      if(Number(input.value)>0){
+        texteCommande += `<li>${escapeHTML(input.dataset.nom)} : ${input.value}</li>`;
+      }
+    });
+
+    if(autre) texteCommande += `<li><strong>Autre demande :</strong> ${autre}</li>`;
+
+    texteCommande += "</ul></div>";
+
+    emailjs.send("service_kt6gmbs","template_53rynh4",{
+      societe,
+      chantier,
+      nom,
+      commande: texteCommande
+    }).then(()=>{
+      alert("Commande envoyée avec succès !");
+      document.getElementById("formCommande").reset();
+      document.querySelectorAll(".quantite").forEach(input=>input.value=0);
+    }).catch(()=>{
+      alert("Erreur lors de l'envoi.");
+    });
+
   });
-
-  if (autre) {
-    texteCommande += `<li><strong>Autre demande :</strong> ${autre}</li>`;
-  }
-
-  texteCommande += "</ul></div>";
-
-  emailjs.send("service_kt6gmbs", "template_53rynh4", {
-    societe,
-    chantier,
-    nom,
-    commande: texteCommande
-  }).then(() => {
-    alert("Commande envoyée avec succès !");
-    document.getElementById("formCommande").reset();
-    document.querySelectorAll(".quantite").forEach(input => input.value = 0);
-  }).catch(() => {
-    alert("Erreur lors de l'envoi.");
-  });
-
 });
