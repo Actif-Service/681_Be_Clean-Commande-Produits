@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <title>Commande de produits - BE Clean</title>
 
-<!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-<!-- CSS externe -->
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<div class="logo">
+  <img src="images/logo-actif-service.png" alt="Actif Service">
+</div>
 
 <h1>Commande de produits</h1>
 
@@ -41,13 +43,12 @@
 <div id="produits"></div>
 
 <div class="form-group">
-  <label for="autre">Besoin d'autre chose :</label>
-  <textarea id="autre" placeholder="Ajoutez un produit ou commentaire"></textarea>
+<label>Besoin d'autre chose :</label>
+<textarea id="autre" placeholder="Ajouter un produit ou commentaire"></textarea>
 </div>
 
 <button type="submit">Envoyer la commande</button>
 
-<!-- JS externe -->
 <script src="app.js"></script>
 
 </body>
