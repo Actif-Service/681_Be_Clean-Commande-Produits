@@ -20,8 +20,6 @@ h1{
   height:60px;
 }
 
-/* formulaire */
-
 form{
   max-width:1400px;
   margin:auto;
@@ -50,33 +48,28 @@ textarea{
 }
 
 /* grille produits */
-
 #produits{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
   gap:15px;
 }
 
-/* carte produit */
-
 .produit{
   background:#f7f7f7;
   border:2px solid #4CAF50;
-  border-radius:10px;
-  padding:15px;
+  border-radius:8px;
+  padding:10px;
   text-align:center;
+  font-size:13px;
   transition:0.2s;
 }
 
 .produit:hover{
-  transform:translateY(-5px);
-  box-shadow:0 6px 12px rgba(0,0,0,0.15);
+  transform:scale(1.03);
 }
 
-/* images */
-
 .img-container{
-  height:120px;
+  height:80px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -85,47 +78,47 @@ textarea{
 
 .img-container img{
   width:100%;
-  height:110px;
+  height:75px;
   object-fit:contain;
 }
 
-/* quantité */
+.produit span{
+  font-weight:bold;
+  margin-bottom:8px;
+  font-size:13px;
+}
 
 .quantite-container{
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:6px;
-  margin-top:8px;
+  gap:5px;
+  margin-bottom:10px;
 }
 
-.quantite{
-  width:40px;
+.quantite-container input.quantite{
+  width:35px;
   text-align:center;
   border:1px solid #ccc;
   border-radius:4px;
+  font-size:13px;
 }
 
-/* boutons */
-
 .quantite-container button{
+  width:25px;
+  height:25px;
   background:black;
   color:white;
   border:none;
-  padding:5px 10px;
   border-radius:4px;
   font-weight:bold;
   cursor:pointer;
+  transition:0.2s;
 }
 
 .quantite-container button:hover{
   background:#333;
-}
-
-textarea{
-  width:100%;
-  height:90px;
-  margin-top:20px;
+  transform:scale(1.1);
 }
 
 button[type="submit"]{
@@ -141,4 +134,15 @@ button[type="submit"]{
 
 button[type="submit"]:hover{
   background:#43a047;
+}
+
+/* responsive */
+@media (max-width:768px){
+  .produit{width:45%;}
+}
+
+@media (max-width:480px){
+  #produits{flex-direction:column;gap:15px;}
+  .produit{width:90%;}
+  button[type="submit"]{width:90%;font-size:18px;}
 }
