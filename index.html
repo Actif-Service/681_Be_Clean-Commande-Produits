@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <title>Commande de produits - BE Clean</title>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="logo">
-  <img src="images/logo-actif-service.png" alt="Actif Service">
+<img src="images/logo-actif-service.png">
 </div>
 
 <h1>Commande de produits</h1>
@@ -21,30 +23,30 @@
 
 <div class="ligne-formulaire">
 
-  <div class="form-group">
-    <label>Nom de la société :</label>
-    <input type="text" value="BE Clean" readonly>
-  </div>
+<div class="form-group">
+<label>Société</label>
+<input type="text" value="BE Clean" readonly>
+</div>
 
-  <div class="form-group">
-    <label>Chantier :</label>
-    <select id="chantier">
-      <option value="">-- Sélectionner un chantier --</option>
-    </select>
-  </div>
+<div class="form-group">
+<label>Chantier</label>
+<select id="chantier" required>
+<option value="">-- Sélectionner --</option>
+</select>
+</div>
 
-  <div class="form-group">
-    <label>Votre nom :</label>
-    <input type="text" id="nom" placeholder="Votre nom">
-  </div>
+<div class="form-group">
+<label>Votre nom</label>
+<input type="text" id="nom" required>
+</div>
 
 </div>
 
 <div id="produits"></div>
 
 <div class="form-group">
-<label>Besoin d'autre chose :</label>
-<textarea id="autre" placeholder="Ajouter un produit ou commentaire"></textarea>
+<label>Autre demande</label>
+<textarea id="autre"></textarea>
 </div>
 
 <button type="submit">Envoyer la commande</button>
