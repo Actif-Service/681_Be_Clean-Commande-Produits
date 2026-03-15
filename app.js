@@ -113,8 +113,8 @@ let tableau=`
 
 <thead>
 <tr style="background:#1976d2;color:white">
-<th style="border:1px solid #ccc;padding:10px;text-align:left;width:85%">Produit</th>
-<th style="border:1px solid #ccc;padding:10px;text-align:center;width:15%">Qté</th>
+<th style="border:1px solid #ccc;padding:10px;text-align:left>Produit</th>
+<th style="border:1px solid #ccc;padding:10px;text-align:center;width:80px">Qté</th>
 </tr>
 </thead>
 
@@ -153,7 +153,7 @@ const messageHTML=`
 
 <td style="width:33%;text-align:left">
 <b>Société :</b> ${societe}<br>
-<b>Technicien :</b> ${nom}
+<b>Technicien(ne) :</b> ${nom}
 </td>
 
 <td style="width:33%;text-align:center">
