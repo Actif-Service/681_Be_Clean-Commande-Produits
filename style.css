@@ -11,6 +11,15 @@ h1{
   margin-bottom:30px;
 }
 
+.logo{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.logo img{
+  height:60px;
+}
+
 form{
   max-width:1400px;
   margin:auto;
@@ -38,6 +47,7 @@ textarea{
   border:1px solid #ccc;
 }
 
+/* grille produits */
 #produits{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
@@ -51,6 +61,11 @@ textarea{
   padding:10px;
   text-align:center;
   font-size:13px;
+  transition:0.2s;
+}
+
+.produit:hover{
+  transform:scale(1.03);
 }
 
 .img-container{
@@ -67,16 +82,43 @@ textarea{
   object-fit:contain;
 }
 
+.produit span{
+  font-weight:bold;
+  margin-bottom:8px;
+  font-size:13px;
+}
+
 .quantite-container{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:5px;
+  margin-bottom:10px;
 }
 
-.quantite-container input{
+.quantite-container input.quantite{
   width:35px;
   text-align:center;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-size:13px;
+}
+
+.quantite-container button{
+  width:25px;
+  height:25px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:4px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.quantite-container button:hover{
+  background:#333;
+  transform:scale(1.1);
 }
 
 button[type="submit"]{
@@ -90,8 +132,17 @@ button[type="submit"]{
   border-radius:4px;
 }
 
+button[type="submit"]:hover{
+  background:#43a047;
+}
+
+/* responsive */
+@media (max-width:768px){
+  .produit{width:45%;}
+}
+
 @media (max-width:480px){
-  #produits{
-    grid-template-columns:1fr;
-  }
+  #produits{flex-direction:column;gap:15px;}
+  .produit{width:90%;}
+  button[type="submit"]{width:90%;font-size:18px;}
 }
