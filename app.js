@@ -147,5 +147,4 @@ function initApp(CONFIG){
   document.querySelectorAll(".quantite").forEach(i => i.value = 0);
 });
     
-  });
 }
