@@ -145,6 +145,7 @@ function initApp(CONFIG){
   document.getElementById("nom").value = "";
   document.getElementById("autre").value = "";
   document.querySelectorAll(".quantite").forEach(i => i.value = 0);
-});
-   
-}
+});.catch(error => {
+  alert("❌ Erreur : " + error.text);
+  console.error("Erreur EmailJS :", error);
+}); 
