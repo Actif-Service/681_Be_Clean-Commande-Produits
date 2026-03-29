@@ -140,7 +140,7 @@ function initApp(CONFIG){
       nom,
       commande: messageHTML
     }).then(() => {
-  alert("✅ Commande envoyée !");
+  alert("✅ Commande envoyée avec succès !");
   document.getElementById("chantier").value = "";
   document.getElementById("nom").value = "";
   document.getElementById("autre").value = "";
