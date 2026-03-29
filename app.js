@@ -97,7 +97,7 @@ function initApp(CONFIG){
         <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
           <tr>
             <td style="width:33%;text-align:left;">
-              Société : ${<b>societe</b>}<br>
+              Société : $<b>{societe}</b><br>
               <b>Demandeur :</b> ${nom}
             </td>
             <td style="width:33%;text-align:center; border: 4px solid #4CAF50; background:#f0fff0; border-radius:8px; padding:12px;">
