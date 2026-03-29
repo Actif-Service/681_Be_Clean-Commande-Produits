@@ -140,7 +140,7 @@ function initApp(CONFIG){
       nom,
       commande: messageHTML
     }).then(() => {
-      alert("Commande envoyée avec succès !");
+      alert("✅  Commande envoyée avec succès !");
       document.getElementById("formCommande").reset();
       document.querySelectorAll(".quantite").forEach(i => i.value = 0);
     });
