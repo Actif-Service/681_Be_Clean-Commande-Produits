@@ -101,7 +101,7 @@ function initApp(CONFIG){
               <b>Demandeur :</b> ${nom}
             </td>
             <td style="width:33%;text-align:center; border: 4px solid #a5d6a7; background:#f0fff0; border-radius:8px; padding:12px;">
-              <div style="font-size:14px; color:#666;">🔵  🔵  🔵  🔵  🔵</div>
+              <div style="font-size:14px; color:#666;"> </div>
               <div style="font-size:18px; font-weight:bold; color:#000;">${chantier}</div>
               <div style="font-size:14px; color:#666; margin-top:4px;">${chantiers.find(c => c.nom === chantier)?.adresse || ""}</div>
             </td>
